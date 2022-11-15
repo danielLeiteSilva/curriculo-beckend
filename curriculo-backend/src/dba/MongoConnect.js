@@ -1,7 +1,7 @@
-const { MongoClient } = require('mongodb')
+const { MongoClient, ServerApiVersion } = require('mongodb')
 
-const url = 'mongodb://localhost:27017';
-const client = new MongoClient(url);
+const url = process.env.MONGODB_URI
+const client = new MongoClient(url, { useNewUrlParser: true, serverApi: ServerApiVersion.v1 });
 const dbName = 'people';
 
 async function Main() {

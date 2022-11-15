@@ -16,15 +16,6 @@ Router.get("/api/v1/users", async (req, res) => {
     const connection = await MongoConnect()
     const users = await connection.find({}).toArray()
 
-    users.map((element, index) => {
-
-        const binary = fs.readFileSync(`./src/images/${element._id}.jpg`)
-        const base64 = Buffer.from(binary).toString('base64')
-
-        users[index]['image'] = base64
-
-    })
-
     res.status(200).json(users)
 })
 
